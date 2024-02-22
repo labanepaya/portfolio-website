@@ -4,6 +4,16 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY);
 const fromEmail = process.env.FROM_EMAIL;
 
+// Disable static generation for the /api/send route
+export async function getStaticProps() {
+  return { props: {} };
+}
+
+// Disable pre-rendering for the /api/send route
+export async function getServerSideProps() {
+  return { props: {} };
+}
+
 export async function POST(req, res) {
   try {
     const { email, subject, message } = await req.json();
@@ -32,6 +42,6 @@ export async function POST(req, res) {
     console.error("Error processing request:", error);
 
     // Return a 400 Bad Request response if the request is invalid
-    return NextResponse.error({ status: 400, message: "Invalid request data" });
+    return NextResponse.error(new Error("Invalid request data"));
   }
 }
