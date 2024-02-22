@@ -31,4 +31,4 @@ const ProjectCard = ({imgUrl, title, description,gitUrl, previewUrl}) => {
   )
   }
 
-export default ProjectCard 
+export default ProjectCard
