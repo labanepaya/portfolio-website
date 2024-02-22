@@ -1,18 +1,8 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY); // Pass the API key here
 const fromEmail = process.env.FROM_EMAIL;
-
-// Disable static generation for the /api/send route
-export async function getStaticProps() {
-  return { props: {} };
-}
-
-// Disable pre-rendering for the /api/send route
-export async function getServerSideProps() {
-  return { props: {} };
-}
 
 export async function POST(req, res) {
   try {
